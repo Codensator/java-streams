@@ -53,6 +53,6 @@ public class IntStreams {
         IntStream.iterate(0, value -> value +1)
                 .limit(10)
                 .forEach(System.out::println);
-        
+
     }
 }
