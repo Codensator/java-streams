@@ -5,6 +5,7 @@ import com.amigoscode.beans.Car;
 import com.amigoscode.mockdata.MockData;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -14,7 +15,15 @@ public class GroupingData {
 
     @Test
     public void simpleGrouping() throws Exception {
-        List<Car> cars = MockData.getCars();
+        Map<String, List<Car>> cars = MockData.getCars()
+                .stream()
+                .collect(Collectors.groupingBy(Car::getMake));
+
+        cars.forEach((s, car) -> {
+            System.out.println("Make" + s);
+            car.forEach(System.out::println);
+            System.out.println("----------------------------");
+        });
     }
 
     @Test
@@ -30,6 +39,13 @@ public class GroupingData {
                 "Alex",
                 "Alex"
         );
+
+        Map<String, Long> map = names.stream()
+                .collect(Collectors.groupingBy(
+                        Function.identity(),
+                        Collectors.counting()));
+
+        System.out.println(map);
     }
 
 }
