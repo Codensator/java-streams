@@ -9,18 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class UnderstandingStreams {
 
+public class UnderstandingStreams {
+/** 15.01 - Understanding Collectors
+ *
+ */
     @Test
     void collect() throws IOException {
         List<String> emails = MockData.getPeople()
                 .stream()
                 .map(Person::getEmail)
                 .collect(
-                        ArrayList::new,
-                        ArrayList::add,
-                        ArrayList::addAll
-                );
+                        () -> new ArrayList<String>(),          // Eine Liste wird gebraucht, damit die Ausgabe von .map zwischen gespeichert werden kann, um sie weiter zu verarbeiten
+                        (list, element) -> list.add(element),
+                        (list1, list2) -> list1.addAll(list2));
+
         emails.forEach(System.out::println);
     }
 
