@@ -13,6 +13,9 @@ import java.util.stream.Collectors;
 
 public class GroupingData {
 
+/** 12.05 - GroupBy
+ * Grouping funktioniert im Wesentlich wie bei SQL-Tables
+ */
     @Test
     public void simpleGrouping() throws Exception {
         Map<String, List<Car>> cars = MockData.getCars()

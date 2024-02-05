@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 
 public class JoiningStrings {
 
+/** 14.01 - Joining Strings Exercise
+ *
+ */
     @Test
     public void joiningStrings() throws Exception {
         List<String> names = List.of("anna", "john", "marcos", "helena", "yasmin");
